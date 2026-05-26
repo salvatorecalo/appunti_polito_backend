@@ -1,0 +1,20 @@
+{
+  "name": "appunti_polito_backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/salvatorecalo/appunti_polito_backend.git"
+  },
+  "keywords": [],
+  "author": "Salvatore Calò | RUN POLITO",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/salvatorecalo/appunti_polito_backend/issues"
+  },
+  "homepage": "https://github.com/salvatorecalo/appunti_polito_backend#readme",
+  "description": "backend for https://polito-appunti.vercel.app/"
+}
