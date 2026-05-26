@@ -60,10 +60,11 @@ app.get('/api/get-list', async (req, res) => {
         defaultObj.status = -1 // -1 stands for category not found
         return res.json(defaultObj)
     }
+    console.log(cfg["subcats"][cat])
 
     try {
         if (cfg["subcats"] && cfg["subcats"][cat]){
-            defaultObjs.subs = cfg["subcats"][cat]
+            defaultObj.subs = cfg["subcats"][cat]
         }
 
         const dbLinks = await Link.find({cat: cat})
@@ -84,7 +85,7 @@ app.get('/api/get-list', async (req, res) => {
 
         res.json(defaultObj)
     } catch (e) {
-        console.error("Error during link fetch: ", err);
+        console.error("Error during link fetch: ", e);
         defaultObj.status = -5;
         res.status(404).json(defaultObj)
     }
