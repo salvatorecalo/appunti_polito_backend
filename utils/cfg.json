@@ -1,0 +1,60 @@
+{
+"courses" : {
+	"dummy" : "TESTING ONLY",
+	"ing" : "TEST D'INGRESSO",
+	"1st" : "1 ANNO TRIENNALE",
+	"2nd" : "2 ANNO TRIENNALE (COMUNE)",
+	"lib" : "CREDITI LIBERI TRIENNALE",
+	"aer" : "TRIENNALE AEROSPAZIALE",
+	"bio" : "TRIENNALE BIOMEDICA",
+	"cin" : "TRIENNALE CINEMA",
+	"elt" : "TRIENNALE ELETTRONICA",
+	"fis" : "TRIENNALE FISICA",
+	"ges" : "TRIENNALE GESTIONALE",
+	"inf" : "TRIENNALE INFORMATICA",
+	"mat" : "TRIENNALE MATEMATICA",
+	"biomag" : "MAGISTRALE BIOMEDICA",
+	"eltmag" : "MAGISTRALE ELETTRONICA",
+	"enrmag" : "MAGISTRALE ENERGETICA",
+	"gesmag" : "MAGISTRALE GESTIONALE",
+	"nfimag" : "MAGISTRALE NANOTECHNOLOGIES FOR ICTS"
+},
+
+"subcats" : {
+	"dummy" : {
+		"d1" : "DUMMY SUB1",
+		"d2" : "DUMMY SUB2"
+	},
+	"1st" : {
+		"alg" : "ALGEBRA",
+		"an1" : "ANALISI 1",
+		"chim" : "CHIMICA",
+		"fis" : "FISICA 1",
+		"ielts" : "IELTS",
+		"inf" : "INFORMATICA"
+	},
+	"bio" : {
+		"bes" : "Strumentazione biomedica e sicurezza",
+		"stm" : "Scienze e Tecnologia dei Materiali"
+	},
+	"lib" : {
+		"nano" : "Introduzione alle nanotecnologie",
+		"tecambsitprod" : "Tecnologie Ambientali dei Siti produttivi"
+	}
+
+},
+"logo" : {
+	"1st" : "img/1st.webp",
+	"aer" : "img/aer.webp",
+	"bio" : "img/bio.webp",
+	"cin" : "img/cin.webp",
+	"elt" : "/areaetf/logo.svg",
+	"eltmag" : "/areaetf/logo.svg",
+	"enrmag" : "img/enrmag.webp",
+	"fis" : "img/fis.webp",
+	"ges" : "img/ges.webp",
+	"inf" : "img/inf.webp",
+	"mat" : "img/mat.webp",
+	"nfimag" : "img/nfimag.webp"
+}
+}
