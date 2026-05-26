@@ -2,6 +2,7 @@
   "name": "appunti_polito_backend",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,5 +17,12 @@
     "url": "https://github.com/salvatorecalo/appunti_polito_backend/issues"
   },
   "homepage": "https://github.com/salvatorecalo/appunti_polito_backend#readme",
-  "description": "backend for https://polito-appunti.vercel.app/"
+  "description": "backend for https://polito-appunti.vercel.app/",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "mongoose": "^9.6.2",
+    "path": "^0.12.7"
+  }
 }

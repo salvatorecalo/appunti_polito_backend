@@ -1,3 +1,5 @@
+import mongoose from 'mongoose'
+
 export const LinkSchema = new mongoose.Schema({
     cat: { type: String, required: true },
     sub: { type: String, required: true },
@@ -7,3 +9,5 @@ export const LinkSchema = new mongoose.Schema({
     is_ext: { type: Boolean, required: true },
     created_at: {type: Date, default: Date.now }
 })
+
+export const Link = mongoose.model('Link', LinkSchema)
