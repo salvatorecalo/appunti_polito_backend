@@ -47,7 +47,6 @@ app.get("/api/config", (req, res) => {
 
 app.get('/api/get-list', async (req, res) => {
     let cat = req.query.id
-    console.log(`Categoria ricevuta: ${cat}`)
     const cfg = getConfig()
     let defaultObj = {
         status: 0,
@@ -60,7 +59,6 @@ app.get('/api/get-list', async (req, res) => {
         defaultObj.status = -1 // -1 stands for category not found
         return res.json(defaultObj)
     }
-    console.log(cfg["subcats"][cat])
 
     try {
         if (cfg["subcats"] && cfg["subcats"][cat]){
