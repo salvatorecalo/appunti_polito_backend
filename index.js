@@ -19,8 +19,8 @@ app.use(express.urlencoded({ extended: true }))
 
 const mongooseUrl = process.env.MONGO_URL;
 if (!mongooseUrl) {
-  console.error("Error: MONGO_URL environment variable is not set.");
-  process.exit(1);
+    console.error("Error: MONGO_URL environment variable is not set.");
+    process.exit(1);
 }
 mongoose.connect(process.env.MONGO_URL)
     .then(() => console.log('MongoDB connected'))
@@ -51,18 +51,18 @@ app.get('/api/get-list', async (req, res) => {
         int: []
     }
 
-    if (cfg["courses"][cat] == null && cat != "gen"){
+    if (cfg["courses"][cat] == null && cat != "gen") {
         defaultObj.status = -1 // -1 stands for category not found
         return res.json(defaultObj)
     }
     console.log(cfg["subcats"][cat])
 
     try {
-        if (cfg["subcats"] && cfg["subcats"][cat]){
+        if (cfg["subcats"] && cfg["subcats"][cat]) {
             defaultObj.subs = cfg["subcats"][cat]
         }
 
-        const dbLinks = await Link.find({cat: cat})
+        const dbLinks = await Link.find({ cat: cat })
 
         dbLinks.forEach(item => {
             const formattedLink = {
@@ -71,7 +71,7 @@ app.get('/api/get-list', async (req, res) => {
                 sub: item.sub
             }
 
-            if (item.is_ext){
+            if (item.is_ext) {
                 defaultObj.ext.push(formattedLink)
             } else {
                 defaultObj.int.push(formattedLink)
@@ -83,6 +83,73 @@ app.get('/api/get-list', async (req, res) => {
         console.error("Error during link fetch: ", e);
         defaultObj.status = -5;
         res.status(404).json(defaultObj)
+    }
+})
+
+app.get("/api/search", async (req, res) => {
+    const search_word = req.query.id.toLowerCase()
+    const jData = {
+        status: 0,
+        cat: [],
+        int: [],
+        ext: []
+    }
+
+    if (search_word == "" || search_word == null) {
+        jData.status = -1 // -1 stands for empty search query
+        return res.json(jData)
+    }
+
+    const cfg = getConfig()
+    const arrdb = []
+    Object.entries(cfg.courses).forEach(([jkey, jval]) => {
+        arrdb.push([jval, jkey, null, null])
+        if (cfg.subcats && cfg.subcats[jkey]) {
+            Object.entries(cfg.subcats[jkey]).forEach(([subkey, subval]) => {
+                arrdb.push([jval, jkey, subkey, subval])
+            })
+        }
+    })
+
+    arrdb.forEach(item => {
+        let show = false
+        if (item[2] === null && item[0].toLowerCase().includes(search_word)) show = true
+        if (item[2] !== null && item[2].toLowerCase().includes(search_word)) show = true
+        if (show) {
+            jData.cat.push(item)
+        }
+    })
+
+    try {
+        const matchedLinks = await Link.find({
+            desc: { $regex: search_word, $options: 'i' }
+        })
+
+        matchedLinks.forEach(item => {
+            if (item.cat == "gen") {
+                if (item.is_ext) {
+                    jData.ext.push([
+                        "gen",
+                        null,
+                        item.link,
+                        item.desc
+                    ])
+                } else {
+                    jData.int.push([
+                        "gen",
+                        null,
+                        item.link,
+                        item.desc
+                    ])
+                }
+            } else {
+                jData.int.push([item.cat, item.sub, item.link, item.desc])
+            }
+        })
+    } catch (e) {
+        console.error("Error during search: ", e);
+        jData.status = -5
+        return res.status(404).json(jData)
     }
 })
 
